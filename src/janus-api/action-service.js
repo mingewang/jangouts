@@ -141,6 +141,18 @@ export const createActionService = (
     }
   };
 
+  that.toggleVideoSubscription = function() {
+    var feed = feedsService.findMain();
+    if (!feed) {
+      return;
+    }
+
+    var nextValue = !feed.getVideoSubscription();
+    feed.setVideoSubscription(nextValue);
+
+    return nextValue;
+  };
+
   /**
    * Disable or enable audio or video for the main feed
    * @param {channel type} type
